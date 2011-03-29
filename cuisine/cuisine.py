@@ -218,7 +218,7 @@ def package_install( package, update=False ):
 def package_ensure( package ):
 	"""Tests if the given package is installed, and installes it in case it's not
 	already there."""
-	if run("dpkg -s %s | grep 'Status:' ; true" % package).find("installed") == -1:
+	if run("dpkg -s %s 2>&1 | grep 'Status:' ; true" % package).find("installed") == -1:
 		package_install(package)
 
 def command_ensure( command, package=None ):
