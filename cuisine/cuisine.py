@@ -40,18 +40,18 @@ def mode_sudo():
 	global MODE
 	MODE = "sudo"
 
-def run(*args):
+def run(*args, **kwargs):
 	"""A wrapper to Fabric's run/sudo commands, using the 'cuisine.MODE' global
 	to tell wether the command should be run as regular user or sudo."""
 	if MODE == "sudo":
-		return fabric.api.sudo(*args)
+		return fabric.api.sudo(*args, **kwargs)
 	else:
-		return fabric.api.run(*args)
+		return fabric.api.run(*args, **kwargs)
 
-def sudo(*args):
+def sudo(*args, **kwargs):
 	"""A wrapper to Fabric's run/sudo commands, using the 'cuisine.MODE' global
 	to tell wether the command should be run as regular user or sudo."""
-	return fabric.api.sudo(*args)
+	return fabric.api.sudo(*args, **kwargs)
 
 def multiargs(function):
 	"""Decorated functions will be 'map'ed to every element of the first argument
